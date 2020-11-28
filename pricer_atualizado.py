@@ -5,7 +5,7 @@ caminho = ('c:/arquivo')
 if not os.path.exists(caminho):
     os.makedirs(caminho)
 
-connection = pyodbc.connect('DRIVER={SQL Server};server=localhost\shopcontrol9;database=BANCO;uid=sa;pwd=Senha123')
+connection = pyodbc.connect('DRIVER={SQL Server};server=localhost\sqlexpress;database=BANCO;uid=sa;pwd=Senha123')
 sql=connection.cursor()
 sql.execute('SELECT P.CODIGO,P.NOME,PR.PRECO FROM PROD_SERV AS P INNER JOIN PROD_SERV_PRECOS AS PR ON(P.ORDEM=PR.ORDEM_PROD_SERV) WHERE PR.ORDEM_TABELA_PRECO=1 AND DATEPART(DD,PR.DATA_ALTERACAO)=DATEPART(DD,GETDATE()) AND DATEPART(MM,PR.DATA_ALTERACAO)=DATEPART(MM,GETDATE())')
 
